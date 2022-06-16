@@ -9,7 +9,9 @@ BASE_URL = 'https://habr.com'
 HEADERS = Headers(os="mac", headers=True).generate()
 
 
-def get_articles():
+def get_articles()-> list:
+    '''The function returns list of html containers with main articles info.'''
+    
     response = requests.get(URL, headers=HEADERS)
     try:
         response.raise_for_status()
@@ -21,12 +23,18 @@ def get_articles():
     row_articles = soup.find_all('article')
     return row_articles
 
-def split_article(text):
+def split_article(text: str)-> list:
+    '''The function completely split incoming text avoiding empty strings in the resulting list
+       and convert list to set.'''
+    
     raw_split = re.split('\W+', text)
     full_split = {word for word in raw_split if word}
     return full_split
 
 def search_articles():
+    '''The function implements keywords search for articles previews and then in full article text
+       if it is necessary.'''
+    
     for article in get_articles():
         article_date = article.find('time').attrs['title'].split(', ')[0]
         article_name = article.find('h2').find('span').text
