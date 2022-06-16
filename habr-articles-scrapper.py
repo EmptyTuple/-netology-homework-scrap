@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 import re
 from fake_headers import Headers
 
-from pprint import pprint
-
 KEYWORDS = ['дизайн', 'фото', 'web', 'python']
 URL = 'https://habr.com/ru/all'
 BASE_URL = 'https://habr.com'
@@ -57,9 +55,6 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-
-
 # def paginate(url): 
     
 #     res = requests.get(url, headers=HEADERS)
@@ -73,8 +68,3 @@ if __name__ == '__main__':
 #         all_pages.append(next_link)
 #         paginate(next_link)
 #     return all_pages
-    
-    
-
-# print(paginate(URL))
-    
